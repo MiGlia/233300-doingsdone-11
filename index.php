@@ -92,7 +92,7 @@ $show_complete_tasks = rand(0, 1);
 
                         <td class="task__date"></td>
                     </tr>
-                    <?php if ($show_complete_tasks == 1): ?>
+                    <?php if ($show_complete_tasks): ?>
                         <tr class="tasks__item task task--completed">
                             <td class="task__select">
                                 <label class="checkbox task__checkbox">
