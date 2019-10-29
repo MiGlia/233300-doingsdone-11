@@ -125,24 +125,22 @@ $categories_list = [
                     <table class="tasks">
                         <!-- проходим по массиву и заменяем содержимое таблицы на содержание массива $categories_list-->
                         <?php foreach($categories_list as $key => $value):?>
-                            <!-- если условие выполняется скрываем задачу -->
-                            <?php if (($value['done']) & ($show_complete_tasks == 0)):continue;?>
+                            <!-- если условие выполняется показываем задачу -->
+                            <?php if ($value['done'] == false):?>
+                                <!-- Если у задачи статус «выполнен», то строке с этой задачей добавить класс "task--completed". -->
+                                <tr class="tasks__item task <?php if ($value['done']): ?>"task--completed"<?php endif;?>">
+                                    <td class="task__select">
+                                        <label class="checkbox task__checkbox">
+                                            <input class="checkbox__input visually-hidden task__checkbox" type="checkbox" value="1">
+                                            <span class="checkbox__text"><?=$value['task'];?></span>
+                                        </label>
+                                    </td>
+                                    <td class="task__file">
+                                        <a class="download-link" href="#">Home.psd</a>
+                                    </td>
+                                    <td class="task__date"><?=$value['date'];?></td>
+                                </tr>
                             <?php endif; ?>
-                            <!-- Если у задачи статус «выполнен», то строке с этой задачей добавить класс "task--completed". -->
-                            <tr class="tasks__item task <?php if ($value['done']): ?>"task--completed"<?php endif;?>">
-                                <td class="task__select">
-                                    <label class="checkbox task__checkbox">
-                                        <input class="checkbox__input visually-hidden task__checkbox" type="checkbox" value="1">
-                                        <span class="checkbox__text"><?=$value['task'];?></span>
-                                    </label>
-                                </td>
-
-                                <td class="task__file">
-                                    <a class="download-link" href="#">Home.psd</a>
-                                </td>
-
-                                <td class="task__date"><?=$value['date'];?></td>
-                            </tr>
                         <?php endforeach; ?>
                     </table>
                 </main>
