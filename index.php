@@ -43,6 +43,17 @@ $categories_list = [
 
 ];
 
+// функция для подсчета количества проектов
+function count_categories($task_list, $project) {
+    $count = 0;
+    foreach ($task_list as $val) {
+        if ($val["categories"] == $project) {
+            $count++;
+        }
+    }
+    return $count;
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -88,7 +99,7 @@ $categories_list = [
                             <?php foreach($categories as $value):?>
                                 <li class="main-navigation__list-item">
                                     <a class="main-navigation__list-item-link" href="#"><?=$value?></a>
-                                    <span class="main-navigation__list-item-count">0</span>
+                                    <span class="main-navigation__list-item-count"><?=count_categories ($categories_list, $value) ?></span>
                                 </li>
                             <?php endforeach; ?>
                         </ul>
