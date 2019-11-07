@@ -57,15 +57,15 @@ function count_categories($task_list, $project) {
 require_once('helpers.php');
 
 // функция считает оставшееся время и если оно меньше 24 то возвращает резкльтат
-function getting_date($date) {
-        $sec_in_hours = 3600;
-        $ts = time();
-        $end_ts = strtotime($date);
-        $ts_diff = $end_ts - $ts;
-        $time = floor($ts_diff / $sec_in_hours);
-        if ($date !== null && $time <= 24) {
-    return $time;
-}
+function is_important_task($date) {
+    $sec_in_hours = 3600;
+    $ts = time();
+    $end_ts = strtotime($date);
+    $ts_diff = $end_ts - $ts;
+    $time = floor($ts_diff / $sec_in_hours);
+    if ($date !== null && $time <= 24) {
+        return $time;
+    }
 };
 
 

@@ -50,7 +50,7 @@
                     <!-- Если у задачи статус «выполнен», то строке с этой задачей добавить класс "task--completed". -->
                     <!-- если оставшееся время меньше 24 часов добавляем класс task--important-->
                     <tr class="tasks__item task <?php if ($value['done']): ?>task--completed<?php endif ?>
-                        <?php if (getting_date($value["date"])): ?>task--important<?php endif ?>
+                        <?php if (is_important_task($value["date"])): ?>task--important<?php endif ?>
                         ">
                         <td class="task__select">
                             <label class="checkbox task__checkbox">
@@ -66,7 +66,7 @@
                 <?php else: ?>
                     <?php if  ($show_complete_tasks):?>
                         <tr class="tasks__item task <?php if ($value['done']): ?>task--completed<?php endif ?>
-                                <?php if (getting_date($value["date"])): ?>task--important<?php endif ?>">
+                                <?php if (is_important_task($value["date"])): ?>task--important<?php endif ?>">
                             <td class="task__select">
                                 <label class="checkbox task__checkbox">
                                     <input class="checkbox__input visually-hidden task__checkbox" type="checkbox" value="1">
