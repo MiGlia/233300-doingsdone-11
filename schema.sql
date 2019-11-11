@@ -6,7 +6,8 @@ USE doingsdone;
 
 CREATE TABLE project (
   id INT AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(128)
+  name VARCHAR(128),
+  user_id INT
 );
 
 CREATE TABLE task (
@@ -15,7 +16,10 @@ CREATE TABLE task (
   is_done BOOL DEFAULT FALSE,
   name VARCHAR(128) NOT NULL,
   file_link VARCHAR(128),
-  date_done TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  date_done TIMESTAMP,
+  user_id INT,
+  project_id INT
+
 );
 
 CREATE TABLE user (
@@ -23,5 +27,5 @@ CREATE TABLE user (
   date_reg TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   email VARCHAR(128) NOT NULL UNIQUE,
   name VARCHAR(128) NOT NULL,
-  poassword VARCHAR(255) NOT NULL UNIQUE
+  password VARCHAR(255) NOT NULL
 );
