@@ -14,12 +14,11 @@ CREATE TABLE task (
   id INT AUTO_INCREMENT PRIMARY KEY,
   date_create TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   is_done BOOL DEFAULT FALSE,
-  name VARCHAR(128),
+  name VARCHAR(128) NOT NULL,
   file_link VARCHAR(128),
   date_done TIMESTAMP,
   user_id INT,
   project_id INT
-
 );
 
 CREATE TABLE user (

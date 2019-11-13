@@ -1,33 +1,21 @@
-INSERT INTO project (name)
-VALUES ('Входящие'), ('Учеба'), ('Работа'), ('Домашние дела'), ('Авто');
-INSERT INTO project (user_id)
-VALUES (null), (null), (null), (null), (null), (null);
+INSERT INTO project (name, user_id)
+VALUES ('Входящие', 1), ('Учеба', 5), ('Работа',2), ('Домашние дела',1), ('Авто',3);
+
+INSERT INTO task (date_create, is_done, file_link, name, date_done, user_id, project_id) VALUES
+('11.09.2019', 0, null, 'Собеседование в IT компании', '01.12.2019', 1, 3),
+('11.08.2019', 0, null, 'Выполнить тестовое задание', '25.12.2019', 2, 3),
+('13.08.2019', 1, null, 'Сделать задание первого раздела', '21.12.2019', 3, 2),
+('06.06.2019', 0, null, 'Встреча с другом', '22.11.2019', 4, 1),
+('06.06.2019', 0, null, 'Купить корм для кота', null, 5, 4),
+('07.06.2019', 0, null, 'Заказать пиццу', null, 5, 4);
 
 
-INSERT INTO task (date_create)
-VALUES (null), (null), (null), (null), (null), (null);
-INSERT INTO task (is_done)
-VALUES (null), (null), (null), (null), (null), (null);
-INSERT INTO task (file_link)
-VALUES (null), (null), (null), (null), (null), (null);
-INSERT INTO task (name)
-VALUES ('Собеседование в IT компании'), ('Выполнить тестовое задание'), ('Сделать задание первого раздела'), ('Встреча с другом'), ('Купить корм для кота'), ('Заказать пиццу');
-INSERT INTO task (date_done)
-VALUES ('01.12.2019'), ('25.12.2019'), ('21.12.2019'), ('22.11.2019'), (null), (null);
-INSERT INTO task (user_id)
-VALUES (null), (null), (null), (null), (null), (null);
-INSERT INTO task (project_id)
-VALUES ('3'), ('3'), ('2'), ('1'), ('4'), ('4');
-
-
-INSERT INTO user (date_reg)
-VALUES ('02.11.2019'), ('01.10.2017'), ('09.07.2018'), ('22.01.2018'), ('29.05.2018');
-INSERT INTO user (email)
-VALUES ('mgh09@gmail.com'), ('Vas90@mail.com'), ('alex07@gmail.com'), ('sanek89@gmail.com'), ('grigoriiivanov@gmail.com');
-INSERT INTO user (name)
-VALUES ('Михаил'), ('Василий'), ('Алексей'), ('Александр'), ('Григорий');
-INSERT INTO user (password)
-VALUES ('bhuiho'), ('12344556667'), ('gbdgfsg'), ('cedfa3213'), ('321312fes344r3');
+INSERT INTO user (date_reg, email, name, password) VALUES
+('02.11.2019', 'mgh09@gmail.com', 'Михаил', 'bhuiho'),
+('01.10.2017', 'Vas90@mail.com', 'Василий', '12344556667'),
+('09.07.2018', 'alex07@gmail.com', 'Алексей', 'gbdgfsg'),
+('22.01.2018', 'sanek89@gmail.com', 'Александр', 'cedfa3213'),
+('29.05.2018', 'grigoriiivanov@gmail.com', 'Григорий', '321312fes344r3');
 
 --список из всех проектов для одного пользователя;
 SELECT * FROM project WHERE user_id = 1 ;
