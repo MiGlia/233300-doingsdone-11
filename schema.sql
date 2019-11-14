@@ -19,7 +19,6 @@ CREATE TABLE task (
   date_done TIMESTAMP,
   user_id INT,
   project_id INT
-
 );
 
 CREATE TABLE user (
