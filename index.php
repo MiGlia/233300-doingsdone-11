@@ -1,60 +1,62 @@
 <?php
 // показывать или нет выполненные задачи
 $show_complete_tasks = rand(0, 1);
-// Массивы
-$categories = ["Входящие", "Учеба", "Работа", "Домашние дела", "Авто"];
-$categories_list = [
-    [
-        'task' => 'Собеседование в IT компании',
-        'date' => '01.12.2019',
-        'categories' => 'Работа',
-        'done' => false
-    ],
-    [
-        'task' => 'Выполнить тестовое задание',
-        'date' => '25.12.2019',
-        'categories' => 'Работа',
-        'done' => false
-    ],
-    [
-        'task' => 'Сделать задание первого раздела',
-        'date' => '21.12.2019',
-        'categories' => 'Учеба',
-        'done' => true
-    ],
-    [
-        'task' => 'Встреча с другом',
-        'date' => '22.11.2019',
-        'categories' => 'Входящие',
-        'done' => false
-    ],
-    [
-        'task' => 'Купить корм для кота',
-        'date' => null,
-        'categories' => 'Домашние дела',
-        'done' => false
-    ],
-    [
-        'task' => 'Заказать пиццу',
-        'date' => null,
-        'categories' => 'Домашние дела',
-        'done' => false
-    ]
+require_once('helpers.php');
 
-];
+//функциz mysqli_connect, чтобы выполнить подключение к MySQL
+$con = mysqli_connect("localhost", "root", "","doingsdone");
 
-// функция для подсчета количества проектов
+// Установка кодировки
+mysqli_set_charset($con, "utf8");
+
+// Обработка ошибок
+if ($con === false ) {
+    print ("Ошибка подключения: " . mysqli_connect_error());
+}
+else {
+    print ("Соединение установлено:");
+}
+
+// выбор id, name из таблицы project
+$sql = "SELECT id, name FROM project WHERE user_id = 1";
+
+//  получаем объект результата запроса
+$result = mysqli_query($con, $sql);
+
+// Обработка ошибок
+if (!$result) {
+$error = mysqli_error($con);
+print("Ошибка MySQL: " . $error);
+}
+
+// Преобразуем объект результата в массив
+$categories = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+// выбор  из таблицы task
+$sql = "SELECT id, date_create, is_done, file_link, name, date_done, user_id, project_id FROM task  WHERE user_id = 1";
+
+//  получаем объект результата запроса
+$result = mysqli_query($con, $sql);
+
+// Обработка ошибок
+if (!$result) {
+$error = mysqli_error($con);
+print("Ошибка MySQL: " . $error);
+}
+
+// Преобразуем объект результата в массив
+$categories_list = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+ // функция для подсчета количества проектов
 function count_categories($task_list, $project) {
     $count = 0;
     foreach ($task_list as $val) {
-        if ($val["categories"] == $project) {
+        if ($val['project_id'] === $categories['id']) {
             $count++;
         }
     }
     return $count;
 }
-
-require_once('helpers.php');
 
 // функция считает оставшееся время и если оно меньше 24 то возвращает true
 function is_important_task($date) {

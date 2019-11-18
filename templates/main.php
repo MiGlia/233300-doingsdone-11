@@ -7,7 +7,7 @@
                 <!--  проходим по массиву $categories и заменяем назвагие проектов -->
                 <?php foreach($categories as $value):?>
                     <li class="main-navigation__list-item">
-                        <a class="main-navigation__list-item-link" href="#"><?=$value?></a>
+                        <a class="main-navigation__list-item-link" href="#"><?=$value['name']?></a>
                         <span class="main-navigation__list-item-count"><?=count_categories ($categories_list, $value) ?></span>
                     </li>
                 <?php endforeach; ?>
@@ -44,39 +44,39 @@
 
         <table class="tasks">
             <!-- проходим по массиву и заменяем содержимое таблицы на содержание массива $categories_list-->
-            <?php foreach($categories_list as $key => $value):?>
+            <?php foreach($categories_list as $value):?>
                 <!-- если условие выполняется показываем задачу -->
-                <?php if (($value['done'] == false) && ($show_complete_tasks == 0)):?>
+                <?php if (($value['is_done'] == false) && ($show_complete_tasks == 0)):?>
                     <!-- Если у задачи статус «выполнен», то строке с этой задачей добавить класс "task--completed". -->
                     <!-- если оставшееся время меньше 24 часов добавляем класс task--important-->
-                    <tr class="tasks__item task <?php if ($value['done']): ?>task--completed<?php endif ?>
-                        <?php if (is_important_task($value["date"])): ?>task--important<?php endif ?>
+                    <tr class="tasks__item task <?php if ($value['is_done']): ?>task--completed<?php endif ?>
+                        <?php if (is_important_task($value['date_done'])): ?>task--important<?php endif ?>
                         ">
                         <td class="task__select">
                             <label class="checkbox task__checkbox">
                                 <input class="checkbox__input visually-hidden task__checkbox" type="checkbox" value="1">
-                                <span class="checkbox__text"><?=$value['task'];?></span>
+                                <span class="checkbox__text"><?=$value['name'];?></span>
                             </label>
                         </td>
                         <td class="task__file">
                             <a class="download-link" href="#">Home.psd</a>
                         </td>
-                        <td class="task__date"><?=$value['date'];?></td>
+                        <td class="task__date"><?=$value['date_done'];?></td>
                     </tr>
                 <?php else: ?>
                     <?php if  ($show_complete_tasks):?>
-                        <tr class="tasks__item task <?php if ($value['done']): ?>task--completed<?php endif ?>
-                                <?php if (is_important_task($value["date"])): ?>task--important<?php endif ?>">
+                        <tr class="tasks__item task <?php if ($value['is_done']): ?>task--completed<?php endif ?>
+                                <?php if (is_important_task($value['date_done'])): ?>task--important<?php endif ?>">
                             <td class="task__select">
                                 <label class="checkbox task__checkbox">
                                     <input class="checkbox__input visually-hidden task__checkbox" type="checkbox" value="1">
-                                    <span class="checkbox__text"><?=$value['task'];?></span>
+                                    <span class="checkbox__text"><?=$value['name'];?></span>
                                 </label>
                             </td>
                             <td class="task__file">
                                 <a class="download-link" href="#">Home.psd</a>
                             </td>
-                            <td class="task__date"><?=$value['date'];?></td>
+                            <td class="task__date"><?=$value['date_done'];?></td>
                         </tr>
                     <?php endif; ?>
                 <?php endif; ?>
