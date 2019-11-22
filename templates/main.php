@@ -44,7 +44,7 @@
 
         <table class="tasks">
             <!-- проходим по массиву и заменяем содержимое таблицы на содержание массива $categories_list-->
-            <?php foreach($categories_list as $value):?>
+            <?php foreach($task_list as $value):?>
                 <!-- если условие выполняется показываем задачу -->
                 <?php if (($value['is_done'] == false) && ($show_complete_tasks == 0)):?>
                     <!-- Если у задачи статус «выполнен», то строке с этой задачей добавить класс "task--completed". -->
